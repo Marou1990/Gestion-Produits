@@ -4,26 +4,32 @@ import lombok.AllArgsConstructor;
 import lombok.Data; 
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.springframework.data.annotation.Id;
 
-@Entity
+//@Entity
 @Data
-@Table(name="category")
+//@Table(name="category")
 @NoArgsConstructor
 @AllArgsConstructor
 public class Category {
 
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id//
     private Integer Id ;
     private String name ;
     private String description;
+
+    @OneToMany(mappedBy="produit")
+    private ArrayList<Product> products; 
+    
     public Integer getId() {
         return Id;
     }

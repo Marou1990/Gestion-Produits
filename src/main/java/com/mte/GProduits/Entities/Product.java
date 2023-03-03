@@ -8,16 +8,18 @@ import lombok.NoArgsConstructor;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.JoinColumn;
 import javax.persistence.Table;
+import javax.persistence.ManyToOne;
 
 import org.springframework.data.annotation.Id;
 
 
-@Entity //hibernate will make a table from entity  defintion
+//@Entity //hibernate will make a table from entity  defintion
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name="product")
+//@Table(name="product")
 public class Product {
 
     @Id
@@ -28,7 +30,11 @@ public class Product {
     private String description;
     private double currentPrice ;
     private Boolean available ;
-    private Integer quantity ; 
+    private Integer quantity ;
+
+    @ManyToOne
+    @JoinColumn(name="id", nullable=false)
+    private Category category; 
 
     public Integer getId() {
         return Id;
